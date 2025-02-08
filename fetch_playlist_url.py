@@ -12,6 +12,7 @@ def fetch_playlist_url():
         "大连购物": "N4S4uAj",
     }
     output_lines = []
+    fetched_urls = {}
     for channel_name, channel_id in idn.items():
         url = f"https://dlyapp.dltv.cn/apiv4.5/api/m3u8_notoken?channelid={channel_id}"
         print(f"URL: {url}")
@@ -25,8 +26,12 @@ def fetch_playlist_url():
             print(f"Failed to extract playlist URL for {channel_name} from response")
             continue
         playlist_url = match.group(1).replace('\\/', '/')
+        if playlist_url in fetched_urls.values():
+            playlist_url = fetched_urls[channel_name]
+        else:
+            fetched_urls[channel_name] = playlist_url
         print(f"Playlist URL for {channel_name}: {playlist_url}")
-        output_lines.append(f"<{channel_name},{playlist_url}>")
+        output_lines.append(f"{channel_name},{playlist_url}")
     with open("大连地方台.txt", "w") as file:
         file.write("\n".join(output_lines))
     print("File written successfully")

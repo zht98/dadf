@@ -1,6 +1,6 @@
-<大连新闻综合,http://172.16.5.10:80/tcb3IB5/500/b6gthbo.m3u8>
-<大连生活,http://172.16.5.10:80/tcb3IB5/500/b6gthbo.m3u8>
-<大连文体,http://172.16.5.10:80/tcb3IB5/500/b6gthbo.m3u8>
-<大连影视,http://172.16.5.10:80/tcb3IB5/500/b6gthbo.m3u8>
-<大连少儿,http://172.16.5.10:80/tcb3IB5/500/b6gthbo.m3u8>
-<大连购物,http://172.16.5.10:80/tcb3IB5/500/b6gthbo.m3u8>
+大连新闻综合,http://172.16.5.10:80/tcb3IB5/500/b6gthbo.m3u8
+大连生活,http://172.16.5.10:80/tcb3IB5/500/b6gthbo.m3u8
+大连文体,http://172.16.5.10:80/tcb3IB5/500/b6gthbo.m3u8
+大连影视,http://172.16.5.10:80/tcb3IB5/500/b6gthbo.m3u8
+大连少儿,http://172.16.5.10:80/tcb3IB5/500/b6gthbo.m3u8
+大连购物,http://172.16.5.10:80/tcb3IB5/500/b6gthbo.m3u8

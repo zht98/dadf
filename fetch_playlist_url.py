@@ -27,10 +27,12 @@ def fetch_playlist_url():
                 time.sleep(5)  # 等待5秒钟后重试
         else:
             print(f"Failed to fetch URL for {channel_name}: {url}")
+            output_lines.append(channel_name)
             continue
         info = response.text
         match = re.search(r'"address":"(.*?)"', info)
         if not match:
+            output_lines.append(channel_name)
             continue
         playlist_url = match.group(1).replace('\\/', '/')
         output_lines.append(f"{channel_name},{playlist_url}")

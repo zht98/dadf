@@ -35,7 +35,7 @@ def fetch_playlist_url():
             output_lines.append(channel_name)  # 只添加频道名称，不带逗号
             continue
         playlist_url = match.group(1).replace('\\/', '/')  # 替换地址中的转义斜杠
-        output_lines.append(f"{channel_name},{playlist_url}")  # 添加频道名称和播放地址
+        output_lines.append(f"{channel_name},{playlist_url}$!")  # 添加频道名称和播放地址，并在链接后面加上$!
     with open("大连地方台.txt", "w") as file:  # 将结果写入文件
         file.write("\n".join(output_lines))
 

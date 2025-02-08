@@ -34,14 +34,15 @@ jobs:
         );
         $url="https://dlyapp.dltv.cn/apiv4.5/api/m3u8_notoken?channelid=".$idn[$id];
         echo "URL: $url\n";
-        $info = file_get_contents($url);
+        $info = @file_get_contents($url);
         if ($info === false) {
-          echo "Failed to fetch URL\n";
+          echo "Failed to fetch URL: $url\n";
           exit(1);
         }
+        echo "API Response: $info\n";
         preg_match_all('|"address":"(.*?)"|',$info,$playurl);
         if (empty($playurl[1][0])) {
-          echo "Failed to extract playlist URL\n";
+          echo "Failed to extract playlist URL from response\n";
           exit(1);
         }
         $playlistUrl = str_replace('\/','/',$playurl[1][0]);

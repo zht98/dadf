@@ -37,8 +37,11 @@ jobs:
         file_put_contents("大连地方台.txt", str_replace('\/','/',$playurl[1][0]));
         EOF
 
-    - name: 检查文件是否生成
+    - name: 列出目录内容以检查文件是否生成
       run: ls -la
+
+    - name: 查看文件内容以确认生成正确
+      run: cat 大连地方台.txt
 
     - name: 提交并推送更改
       run: |

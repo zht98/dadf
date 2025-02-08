@@ -1,5 +1,6 @@
 import requests
 import re
+import time
 
 def fetch_playlist_url():
     idn = {
@@ -16,8 +17,16 @@ def fetch_playlist_url():
     output_lines = []
     for channel_name, channel_id in idn.items():
         url = f"https://dlyapp.dltv.cn/apiv4.5/api/m3u8_notoken?channelid={channel_id}"
-        response = requests.get(url, headers=headers)
-        if response.status_code != 200:
+        for _ in range(3):  # 尝试三次
+            try:
+                response = requests.get(url, headers=headers)
+                if response.status_code == 200:
+                    break
+            except requests.exceptions.RequestException as e:
+                print(f"Failed to fetch URL for {channel_name}: {url}, retrying...")
+                time.sleep(5)  # 等待5秒钟后重试
+        else:
+            print(f"Failed to fetch URL for {channel_name}: {url}")
             continue
         info = response.text
         match = re.search(r'"address":"(.*?)"', info)

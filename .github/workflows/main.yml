@@ -2,7 +2,7 @@ name: Fetch and Save Playlist URL
 
 on:
   schedule:
-    - cron: '0 2 * * *' # 
+    - cron: '0 2 * * *' # 每天凌晨2点运行一次
     workflow_dispatch:  # 允许手动触发
   push:
     branches:

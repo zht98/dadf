@@ -1,12 +1,7 @@
 name: Fetch and Save Playlist URL
 
 on:
-  # schedule:
-    # - cron: '0 2 * * *' # 每天凌晨2点运行一次
-    workflow_dispatch:  # 允许手动触发
-  # push:
-    # branches:
-      # - main
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   fetch-url:
@@ -41,6 +36,9 @@ jobs:
         preg_match_all('|"address":"(.*?)"|',$info,$playurl);
         file_put_contents("大连地方台.txt", str_replace('\/','/',$playurl[1][0]));
         EOF
+
+    - name: 检查文件是否生成
+      run: ls -la
 
     - name: 提交并推送更改
       run: |

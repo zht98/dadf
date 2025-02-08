@@ -27,10 +27,10 @@ def fetch_playlist_url():
             print(f"Failed to extract playlist URL for {channel_name} from response")
             continue
         playlist_url = match.group(1).replace('\\/', '/')
-        if playlist_url in fetched_urls.values():
-            print(f"Playlist URL for {channel_name} is already fetched")
-        else:
+        if playlist_url not in fetched_urls.values():
             fetched_urls[channel_name] = playlist_url
+        else:
+            print(f"Playlist URL for {channel_name} is already fetched")
         print(f"Playlist URL for {channel_name}: {playlist_url}")
         output_lines.append(f"{channel_name},{playlist_url}")
     with open("大连地方台.txt", "w") as file:

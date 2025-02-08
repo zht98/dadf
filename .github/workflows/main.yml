@@ -11,49 +11,16 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        php-version: '7.4'
+        python-version: '3.x'
 
-    - name: Install curl
-      run: sudo apt-get install -y curl
+    - name: Install dependencies
+      run: pip install requests
 
     - name: Fetch playlist URL
-      run: |
-        php <<'EOF'
-        echo "Fetching playlist URL...";
-        $id = "dlxwzh";
-        $idn = array(
-          "dlxwzh" => "tcb3IB5",
-          "dlsh" => "JzcFkF4",
-          "dlwt" => "hxT7Fc3",
-          "dlys" => "8cuL6wa",
-          "dlse" => "q6tZ6Ba",
-          "dlgw" => "N4S4uAj",
-        );
-        $url="https://dlyapp.dltv.cn/apiv4.5/api/m3u8_notoken?channelid=".$idn[$id];
-        echo "URL: $url\n";
-        $info = @file_get_contents($url);
-        if ($info === false) {
-          echo "Failed to fetch URL: $url\n";
-          exit(1);
-        }
-        echo "API Response: $info\n";
-        preg_match_all('|"address":"(.*?)"|',$info,$playurl);
-        if (empty($playurl[1][0])) {
-          echo "Failed to extract playlist URL from response\n";
-          exit(1);
-        }
-        $playlistUrl = str_replace('\/','/',$playurl[1][0]);
-        echo "Playlist URL: $playlistUrl\n";
-        $result = file_put_contents("大连地方台.txt", $playlistUrl);
-        if ($result === false) {
-          echo "Failed to write to file\n";
-          exit(1);
-        }
-        echo "File written successfully\n";
-        EOF
+      run: python fetch_playlist_url.py
 
     - name: 列出目录内容以检查文件是否生成
       run: ls -la

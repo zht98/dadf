@@ -26,7 +26,7 @@ jobs:
 
     - name: Fetch playlist URL
       run: |
-        php -r '
+        php <<'EOF'
         $id = "dlxwzh";
         $idn = array(
           "dlxwzh" => "tcb3IB5",
@@ -38,9 +38,9 @@ jobs:
         );
         $url="https://dlyapp.dltv.cn/apiv4.5/api/m3u8_notoken?channelid=".$idn[$id];
         $info = file_get_contents($url);
-        preg_match_all(\'|"address":"(.*?)"|\',$info,$playurl);
-        file_put_contents("test.txt", str_replace(\'\/\',\'/\',$playurl[1][0]));
-        '
+        preg_match_all('|"address":"(.*?)"|',$info,$playurl);
+        file_put_contents("test.txt", str_replace('\/','/',$playurl[1][0]));
+        EOF
 
     - name: 提交并推送更改
       run: |

@@ -22,12 +22,6 @@ jobs:
     - name: Fetch playlist URL
       run: python fetch_playlist_url.py
 
-    - name: 列出目录内容以检查文件是否生成
-      run: ls -la
-
-    - name: 查看文件内容以确认生成正确
-      run: cat 大连地方台.txt
-
     - name: 提交并推送更改
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

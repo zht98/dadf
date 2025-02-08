@@ -31,8 +31,8 @@ def fetch_playlist_url():
             continue
         info = response.text  # 获取响应的文本内容
         match = re.search(r'"address":"(.*?)"', info)  # 使用正则表达式提取播放地址
-        if not match:
-            output_lines.append(channel_name)  # 如果没有匹配到播放地址，只添加频道名称，不带逗号
+        if not match or match.group(1) == "":  # 如果没有匹配到播放地址或地址为空
+            output_lines.append(channel_name)  # 只添加频道名称，不带逗号
             continue
         playlist_url = match.group(1).replace('\\/', '/')  # 替换地址中的转义斜杠
         output_lines.append(f"{channel_name},{playlist_url}")  # 添加频道名称和播放地址

@@ -27,7 +27,7 @@ def fetch_playlist_url():
             continue
         playlist_url = match.group(1).replace('\\/', '/')
         if playlist_url in fetched_urls.values():
-            playlist_url = fetched_urls[channel_name]
+            print(f"Playlist URL for {channel_name} is already fetched")
         else:
             fetched_urls[channel_name] = playlist_url
         print(f"Playlist URL for {channel_name}: {playlist_url}")

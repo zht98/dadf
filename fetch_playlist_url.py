@@ -21,6 +21,7 @@ def fetch_playlist_url():
             print(f"Failed to fetch URL for {channel_name}: {url}")
             continue
         info = response.text
+        print(f"API Response for {channel_name}: {info}")
         match = re.search(r'"address":"(.*?)"', info)
         if not match:
             print(f"Failed to extract playlist URL for {channel_name} from response")
